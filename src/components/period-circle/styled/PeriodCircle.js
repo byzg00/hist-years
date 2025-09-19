@@ -1,0 +1,28 @@
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+import styled from 'styled-components';
+import { colors } from '../../../styled';
+import { pointNormalSize } from '../constants';
+export var Wrapper = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    position: relative;\n    width: 700px;\n    height: 700px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n"], ["\n    position: relative;\n    width: 700px;\n    height: 700px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n"])));
+export var MainCircle = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    position: absolute;\n    width: 530px;\n    height: 530px;\n    border: 1px solid ", ";\n    border-radius: 50%;\n    opacity: 0.2;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    box-sizing: border-box;\n"], ["\n    position: absolute;\n    width: 530px;\n    height: 530px;\n    border: 1px solid ", ";\n    border-radius: 50%;\n    opacity: 0.2;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n    box-sizing: border-box;\n"])), colors.blackBlue);
+export var PeriodPointsWrapper = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    width: 100%;\n    height: 100%;\n"], ["\n    width: 100%;\n    height: 100%;\n"])));
+export var PeriodPointInteraction = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    position: absolute;\n    width: 56px;\n    height: 56px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background-color: transparent;\n    border: none;\n    transition: none;\n    --is-hovered: 0;\n    \n    &:hover {\n        --is-hovered: 1;\n    }\n    \n    * {\n        transition-property: none !important;\n    }\n"], ["\n    position: absolute;\n    width: 56px;\n    height: 56px;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    background-color: transparent;\n    border: none;\n    transition: none;\n    --is-hovered: 0;\n    \n    &:hover {\n        --is-hovered: 1;\n    }\n    \n    * {\n        transition-property: none !important;\n    }\n"])));
+export var PeriodNumber = styled.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    color: ", ";\n    font-size: 20px;\n    font-weight: bold;\n    pointer-events: none;\n    user-select: none;\n    transition: none;\n    opacity: ", ";\n\n    transition-property: none !important;\n"], ["\n    color: ", ";\n    font-size: 20px;\n    font-weight: bold;\n    pointer-events: none;\n    user-select: none;\n    transition: none;\n    opacity: ", ";\n\n    transition-property: none !important;\n"])), colors.blackBlue, function (_a) {
+    var $isActive = _a.$isActive;
+    return $isActive ? 1 : 0;
+});
+export var PeriodPoint = styled.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    position: relative;\n    border-radius: 50%;\n    width: ", "px;\n    height: ", "px;\n    ", "\n    transition: none;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    pointer-events: none;\n    * {\n        transition-property: none !important;\n    }\n"], ["\n    position: relative;\n    border-radius: 50%;\n    width: ", "px;\n    height: ", "px;\n    ", "\n    transition: none;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    pointer-events: none;\n    * {\n        transition-property: none !important;\n    }\n"])), pointNormalSize, pointNormalSize, function (_a) {
+    var $isActive = _a.$isActive;
+    return $isActive ? "\n            background-color: white;\n            border: 1px solid ".concat(colors.blackBlue, ";\n        ") : "\n            background-color: ".concat(colors.blackBlue, ";\n            border: none;\n        ");
+});
+export var PeriodTitleWrapper = styled.div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    width: 100%;\n    height: 100%;\n    position: absolute;\n"], ["\n    width: 100%;\n    height: 100%;\n    position: absolute;\n"])));
+export var PeriodTitle = styled.div(templateObject_8 || (templateObject_8 = __makeTemplateObject(["\n    position: absolute;\n    left: calc(100% + 20px);\n    top: 50%;\n    transform: translateY(-50%);\n    color: ", ";\n    font-size: 20px;\n    font-weight: 700;\n    white-space: nowrap;\n    transition: none;\n    pointer-events: none;\n    user-select: none;\n    opacity: ", ";\n    scale: ", ";\n\n    transition-property: none !important;\n"], ["\n    position: absolute;\n    left: calc(100% + 20px);\n    top: 50%;\n    transform: translateY(-50%);\n    color: ", ";\n    font-size: 20px;\n    font-weight: 700;\n    white-space: nowrap;\n    transition: none;\n    pointer-events: none;\n    user-select: none;\n    opacity: ", ";\n    scale: ", ";\n\n    transition-property: none !important;\n"])), colors.blackBlue, function (_a) {
+    var $isActive = _a.$isActive;
+    return $isActive ? 1 : 0;
+}, function (_a) {
+    var $isActive = _a.$isActive;
+    return $isActive ? 1 : 0;
+});
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
