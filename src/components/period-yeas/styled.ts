@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { colors } from '../../styled';
+import { colors, mediaQuery } from '../../styled';
+import { horizontalPaddingMobile } from '../periods/styled';
 
 export const YearsContainer = styled.div`
     display: flex;
@@ -9,6 +10,10 @@ export const YearsContainer = styled.div`
     line-height: 160px;
     letter-spacing: -.02em;
     white-space: pre;
+    ${mediaQuery.lt480} {
+        font-size: 56px;
+        padding: 0 ${horizontalPaddingMobile}px;
+    }
 `;
 
 export const FirstYearNumber = styled.div`

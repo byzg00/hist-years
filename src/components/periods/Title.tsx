@@ -1,4 +1,4 @@
-import { TitleLine, TitleText, TitleWrapper } from "./styled";
+import { TitleLine, TitleText, TitleWrapper } from './styled';
 
 export const Title = (props: {
     title: string;

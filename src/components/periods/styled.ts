@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import { colors } from '../../styled';
+import { colors, mediaQuery } from '../../styled';
+
+export const horizontalPaddingMobile = 24;
 
 export const PeriodsWrapper = styled.div`
     position: relative;
@@ -11,6 +13,18 @@ export const PeriodsWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    ${mediaQuery.lt480} {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+`;
+
+export const MainWrapper = styled.div`
+    ${mediaQuery.lt480} {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+    }
 `;
 
 export const LineVertical = styled.div<{ $left: number }>`
@@ -18,7 +32,7 @@ export const LineVertical = styled.div<{ $left: number }>`
     width: 1px;
     height: 100%;
     background-color: ${colors.blackBlue};
-    left: ${({ $left }) => $left}%;
+    left: calc(${({ $left }) => $left}% - 1px);
     transform: translateX(-50%);
     opacity: 0.2;
 `;
@@ -28,7 +42,7 @@ export const LineHorizontal = styled.div<{ $top: number }>`
     width: 100%;
     height: 1px;
     background-color: ${colors.blackBlue};
-    top: ${({ $top }) => $top}%;
+    top: calc(${({ $top }) => $top}% - 1px);
     transform: translateY(-50%);
     opacity: 0.2;
 `;
@@ -41,6 +55,10 @@ export const TitleWrapper = styled.div`
     display: flex;
     align-items: stretch;
     gap: 80px;
+    ${mediaQuery.lt480} {
+        padding: 59px ${horizontalPaddingMobile}px 0;
+        position: static;
+    }
 `;
 
 export const TitleLine = styled.div`
@@ -48,6 +66,9 @@ export const TitleLine = styled.div`
     background: linear-gradient(180deg, ${colors.iris100} 0%, ${colors.fuschia100} 100%);
     flex-shrink: 0;
     transform: scaleY(${120/135});
+    ${mediaQuery.lt480} {
+        display: none;
+    }
 `;
 
 export const TitleText = styled.div`
@@ -56,4 +77,8 @@ export const TitleText = styled.div`
     font-weight: 700;
     color: ${colors.blackBlue};
     max-width: 353px;
+    ${mediaQuery.lt480} {
+        font-size: 20px;
+        max-width: 123px;
+    }
 `;

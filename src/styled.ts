@@ -8,3 +8,7 @@ export const fonts = {
     primary: "'PT Sans', sans-serif",
     decorative: "'Bebas Neue', sans-serif",
 };
+
+export const mediaQuery = {
+    lt480: '@media (max-width: 479px)',
+} as const;
