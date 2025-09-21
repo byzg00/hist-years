@@ -4,10 +4,13 @@ import { colors } from '../../../styled';
 import { pointNormalSize } from '../constants';
 
 export const PeriodCircleWrapper = styled.div`
-    position: relative;
+    position: absolute;
     width: 700px;
     height: 700px;
     display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
 `;

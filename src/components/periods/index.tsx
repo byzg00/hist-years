@@ -12,8 +12,9 @@ export const Periods = (props: {
     periods: Period[],
     activePeriodId: string,
     onActivate: (activePeriodId: string) => void,
+    onAnimationStateChange?: (isAnimating: boolean) => void,
 }) => {
-    const { title, periods, activePeriodId, onActivate } = props;
+    const { title, periods, activePeriodId, onActivate, onAnimationStateChange } = props;
     const isMobile = useMatchMedia(mediaQuery.lt480);
 
     return (
@@ -37,6 +38,7 @@ export const Periods = (props: {
                         periods={periods}
                         activePeriodId={activePeriodId}
                         onActivate={onActivate}
+                        onAnimationStateChange={onAnimationStateChange}
                     >
                         <PeriodYears periods={periods} activePeriodId={activePeriodId} />
                     </PeriodCircle>

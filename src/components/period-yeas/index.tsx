@@ -11,9 +11,6 @@ interface PeriodYearsProps {
     activePeriodId: string;
 }
 
-/**
- * Создает анимацию для изменения года
- */
 const createYearAnimation = (
     yearObject: { value: number },
     targetValue: number,

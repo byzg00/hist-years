@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors, mediaQuery } from '../../styled';
 
 export const horizontalPaddingMobile = 24;
+const leftPadding = 80;
 
 export const PeriodsWrapper = styled.div`
     position: relative;
@@ -13,6 +14,7 @@ export const PeriodsWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 170px 40px 104px ${leftPadding}px;
     ${mediaQuery.lt480} {
         align-items: flex-start;
         justify-content: flex-start;
@@ -20,6 +22,8 @@ export const PeriodsWrapper = styled.div`
 `;
 
 export const MainWrapper = styled.div`
+    width: 100%;
+    height: 100%;
     ${mediaQuery.lt480} {
         display: flex;
         flex-direction: column;
@@ -33,6 +37,7 @@ export const LineVertical = styled.div<{ $left: number }>`
     height: 100%;
     background-color: ${colors.blackBlue};
     left: calc(${({ $left }) => $left}% - 1px);
+    top: 0;
     transform: translateX(-50%);
     opacity: 0.2;
 `;
@@ -43,18 +48,15 @@ export const LineHorizontal = styled.div<{ $top: number }>`
     height: 1px;
     background-color: ${colors.blackBlue};
     top: calc(${({ $top }) => $top}% - 1px);
+    left: 0;
     transform: translateY(-50%);
     opacity: 0.2;
 `;
 
 export const TitleWrapper = styled.div`
-    padding-top: 170px;
-    position: absolute;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: stretch;
-    gap: 80px;
+    position: relative;
     ${mediaQuery.lt480} {
         padding: 59px ${horizontalPaddingMobile}px 0;
         position: static;
@@ -62,10 +64,14 @@ export const TitleWrapper = styled.div`
 `;
 
 export const TitleLine = styled.div`
+    position: absolute;
+    top: 0;
+    left: ${-leftPadding - 5 / 2}px;
     width: 5px;
+    height: 100%;
     background: linear-gradient(180deg, ${colors.iris100} 0%, ${colors.fuschia100} 100%);
     flex-shrink: 0;
-    transform: scaleY(${120/135});
+    transform: scaleY(${120 / 135});
     ${mediaQuery.lt480} {
         display: none;
     }

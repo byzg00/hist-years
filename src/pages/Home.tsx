@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Periods } from '../components/periods';
 import { PeriodYears } from '../components/period-yeas';
+import { PeriodChanger } from '../components/period-changer';
 import { Period } from '../types';
 
 import { PageWrapper } from './styled';
@@ -94,10 +95,15 @@ const periods: Period[] = [
 ];
 
 const App: React.FC = () => {
-    const [activePeriodId, setActivePeriodId] = useState('period-3');
+    const [activePeriodId, setActivePeriodId] = useState('period-2');
+    const [isAnimating, setIsAnimating] = useState(false);
 
     const handleActivate = (periodId: string) => {
         setActivePeriodId(periodId);
+    };
+
+    const handleAnimationStateChange = (animating: boolean) => {
+        setIsAnimating(animating);
     };
 
     return (
@@ -107,6 +113,13 @@ const App: React.FC = () => {
                 periods={periods}
                 activePeriodId={activePeriodId}
                 onActivate={handleActivate}
+                onAnimationStateChange={handleAnimationStateChange}
+            />
+            <PeriodChanger
+                periods={periods}
+                activePeriodId={activePeriodId}
+                onActivate={handleActivate}
+                isAnimating={isAnimating}
             />
         </PageWrapper>
     );
