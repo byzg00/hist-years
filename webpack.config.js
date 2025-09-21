@@ -6,6 +6,23 @@ const path = require('path');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const babelReact = {
+    test: /\.(js|jsx|ts|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+        loader: 'babel-loader',
+        options: {
+            cacheDirectory: true,
+            presets: [
+                '@babel/preset-env', 
+                ['@babel/preset-react', { runtime: 'automatic' }], 
+                '@babel/preset-typescript'
+            ],
+            plugins: ['babel-plugin-styled-components'],
+        },
+    },
+};
+
 const config = {
     entry: './src/index.tsx',
     output: {
@@ -25,16 +42,11 @@ const config = {
     ],
     module: {
         rules: [
-            {
-                test: /\.(ts|tsx)$/i,
-                loader: 'ts-loader',
-                exclude: ['/node_modules/'],
-            },
+            babelReact,
             {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
                 type: 'asset',
             },
-
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],

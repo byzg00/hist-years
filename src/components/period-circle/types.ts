@@ -1,9 +1,3 @@
-export type Period = {
-    id: string;
-    num: number;
-    title: string;
-}
-
 export type PointPosition = {
     id: string;
     x: number;

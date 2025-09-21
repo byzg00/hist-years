@@ -1,7 +1,7 @@
 import range from 'lodash/range';
 import { gsap } from 'gsap';
 
-import { radius, center } from './constants';
+import { center, radius } from './constants';
 
 export const angleToXy = (angle: number) => {
     return {

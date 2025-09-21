@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Period } from '../types';
+import { Period } from '../../../types';
 import { getPointXyByIndex } from '../utils';
 
 export const usePointPositions = (params: {

@@ -9,6 +9,11 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    html, body, #root {
+        height: 100%;
+        margin: 0;
+    }
+
     body {
         font-family: ${fonts.primary};
         font-size: 16px;

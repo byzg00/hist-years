@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 
-import { Period } from '../types';
+import { Period } from '../../../types';
 
 export const useHoverCheck = (params: {
     containerRef: React.RefObject<HTMLDivElement | null>,

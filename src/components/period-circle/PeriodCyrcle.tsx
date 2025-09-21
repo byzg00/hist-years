@@ -3,6 +3,9 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
+import { Period } from '../../types';
+import { calculateAnimationDuration } from '../../utils';
+
 import {
     MainCircle,
     PeriodNumber,
@@ -11,10 +14,9 @@ import {
     PeriodPointsWrapper,
     PeriodTitle,
     PeriodTitleWrapper,
-    Wrapper,
+    PeriodCircleWrapper,
 } from './styled/PeriodCircle';
 import { usePointHover } from './hooks/usePointHover';
-import { Period } from './types';
 import { usePrevActivePointAnimate } from './hooks/usePrevActivePointAnimate';
 import { createCircularAnimation } from './utils';
 import { useNewActivePointAnimate } from './hooks/useNewActivePointAnimate';
@@ -28,12 +30,14 @@ interface PeriodCircleProps {
     periods: Period[];
     activePeriodId: string;
     onActivate: (activePeriodId: string) => void;
+    children?: React.ReactNode;
 }
 
 export const PeriodCircle: FC<PeriodCircleProps> = ({
     periods,
     activePeriodId,
     onActivate,
+    children,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const pointRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -80,9 +84,9 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
         if (isAnimating || periodId === activePeriodId) return;
 
         saveClickPosition(e);
-        resetAllHoverStates();
 
         const clickedIndex = periods.findIndex((p) => p.id === periodId);
+        resetAllHoverStates(clickedIndex);
         setIsAnimating(true);
         const oldPositions = [...pointPositions];
 
@@ -96,6 +100,8 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
         });
 
         const direction = clickedIndex > activePeriodIndex ? 'counterclockwise' : 'clockwise';
+        const animationDuration = calculateAnimationDuration(activePeriodIndex, clickedIndex, periods.length);
+
         prevActivePointAnimate({
             pointRefs,
             titleRefs,
@@ -128,7 +134,7 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
                 startAngle: oldPos.angle,
                 endAngle: newAngle,
                 direction,
-                duration: 1,
+                duration: animationDuration,
                 timeline: tl,
                 timeOffset: 0,
             });
@@ -136,8 +142,9 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
     });
 
     return (
-        <Wrapper ref={containerRef}>
+        <PeriodCircleWrapper ref={containerRef}>
             <MainCircle />
+            {children}
 
             <PeriodPointsWrapper>
                 {pointPositions.map((point, index) => (
@@ -181,6 +188,6 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
                     </PeriodPointInteraction>
                 ))}
             </PeriodPointsWrapper>
-        </Wrapper>
+        </PeriodCircleWrapper>
     );
 };

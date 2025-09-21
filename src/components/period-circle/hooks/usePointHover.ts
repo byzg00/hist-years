@@ -2,8 +2,8 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 
 import { colors } from '../../../styled';
+import { Period } from '../../../types';
 import { pointNormalSize, pointActiveSize } from '../constants';
-import { Period } from '../types';
 
 export const usePointHover = (params: {
     containerRef: React.RefObject<HTMLDivElement | null>,
@@ -63,9 +63,9 @@ export const usePointHover = (params: {
         }
     });
 
-    const resetAllHoverStates = contextSafe(() => {
+    const resetAllHoverStates = contextSafe((excludeIndex?: number) => {
         pointRefs.current.forEach((point, index) => {
-            if (!point || periods[index]?.id === activePeriodId) return;
+            if (!point || periods[index]?.id === activePeriodId || index === excludeIndex) return;
 
             const number = point.querySelector('[data-period-number]');
 

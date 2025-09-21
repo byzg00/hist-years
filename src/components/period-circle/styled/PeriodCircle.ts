@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../../styled';
 import { pointNormalSize } from '../constants';
 
-export const Wrapper = styled.div`
+export const PeriodCircleWrapper = styled.div`
     position: relative;
     width: 700px;
     height: 700px;
@@ -28,8 +28,8 @@ export const MainCircle = styled.div`
 export const PeriodPointsWrapper = styled.div`
     width: 100%;
     height: 100%;
+    position: absolute;
 `;
-
 export const PeriodPointInteraction = styled.div`
     position: absolute;
     width: 56px;
@@ -42,11 +42,11 @@ export const PeriodPointInteraction = styled.div`
     border: none;
     transition: none;
     --is-hovered: 0;
-    
+
     &:hover {
         --is-hovered: 1;
     }
-    
+
     * {
         transition-property: none !important;
     }

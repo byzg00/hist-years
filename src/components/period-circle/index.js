@@ -1,1 +1,0 @@
-export { PeriodCircle } from './PeriodCyrcle';
