@@ -1,6 +1,7 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback } from 'react';
 
 import { Period } from '../../types';
+
 import {
     PeriodChangerWrapper,
     PeriodCounter,
@@ -43,7 +44,6 @@ export const PeriodChanger: FC<PeriodChangerProps> = ({
         }
     }, [isLastPeriod, isAnimating, periods, activePeriodIndex, onActivate]);
 
-    // Форматирование номера с ведущими нулями
     const formatNumber = (num: number): string => {
         return num.toString().padStart(2, '0');
     };

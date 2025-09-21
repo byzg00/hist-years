@@ -18,11 +18,12 @@ import {
 } from './styled/PeriodCircle';
 import { usePointHover } from './hooks/usePointHover';
 import { usePrevActivePointAnimate } from './hooks/usePrevActivePointAnimate';
-import { createCircularAnimation, getPointXyByIndex } from './utils';
+import { createCircularAnimation } from './utils';
 import { useNewActivePointAnimate } from './hooks/useNewActivePointAnimate';
-import { usePointPositions } from './hooks/usePointPositions';
+import { useCalculatePointPositions, usePointPositions } from './hooks/usePointPositions';
 import { useInitGsap } from './hooks/useInitGsap';
 import { useHoverCheck } from './hooks/useHoverCheck';
+import { useHandleChangeActivePeriod } from './hooks/useHandleChangeActivePeriod';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -48,16 +49,12 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
 
     const [isAnimating, setIsAnimating] = useState(false);
     const [localActivePeriodId, setLocalActivePeriodId] = useState(activePeriodId);
-    const prevActivePeriodIdRef = useRef<string>(activePeriodId);
     const currentTimelineRef = useRef<GSAPTimeline | null>(null);
-
-    const activePeriodIndex = periods.findIndex((p) => p.id === activePeriodId);
 
     const localActivePeriodIndex = periods.findIndex((p) => p.id === localActivePeriodId);
 
     const pointPositions = usePointPositions({
         periods,
-        activePeriodId: localActivePeriodId,
         activePeriodIndex: localActivePeriodIndex,
     });
 
@@ -87,26 +84,7 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
     const prevActivePointAnimate = usePrevActivePointAnimate({ containerRef });
     const newActivePointAnimate = useNewActivePointAnimate({ containerRef });
 
-    // Функция для вычисления позиций точек для определенного активного индекса
-    const calculatePointPositions = useCallback((targetActivePeriodIndex: number) => {
-        return periods.map((period, index) => {
-            const { x, y, angle } = getPointXyByIndex(index, targetActivePeriodIndex, periods.length);
-
-            return {
-                ...period,
-                x,
-                y,
-                angle,
-                isActive: index === targetActivePeriodIndex,
-                originalIndex: index,
-            };
-        });
-    }, [periods]);
-
-    // Уведомление о состоянии анимации
-    const notifyAnimationStateChange = useCallback((animating: boolean) => {
-        onAnimationStateChange?.(animating);
-    }, [onAnimationStateChange]);
+    const calculatePointPositions = useCalculatePointPositions({ periods });
 
     const animateToNewPeriod = useCallback(contextSafe((
         newPeriodId: string,
@@ -121,10 +99,8 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
         }
 
         setIsAnimating(true);
-        // Уведомляем о начале анимации
-        notifyAnimationStateChange(true);
-        
-        // Вычисляем правильные старые позиции на основе fromIndex
+        onAnimationStateChange?.(true);
+
         const oldPositions = hasClickEvent ? [...pointPositions] : calculatePointPositions(fromIndex);
 
         const tl = gsap.timeline({
@@ -136,7 +112,7 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
                 setLocalActivePeriodId(newPeriodId);
 
                 // Уведомляем о завершении анимации
-                notifyAnimationStateChange(false);
+                onAnimationStateChange?.(false);
 
                 if (hasClickEvent) {
                     setTimeout(checkHoverViaCSS, 50);
@@ -144,7 +120,6 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
             },
         });
 
-        // Сохраняем ссылку на текущую анимацию
         currentTimelineRef.current = tl;
 
         const direction = newIndex > fromIndex ? 'counterclockwise' : 'clockwise';
@@ -197,44 +172,25 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
         newActivePointAnimate,
         contextSafe,
         calculatePointPositions,
-        notifyAnimationStateChange,
+        onAnimationStateChange,
     ]);
+
+    useHandleChangeActivePeriod({
+        activePeriodId,
+        isAnimating,
+        periods,
+        animateToNewPeriod,
+        localActivePeriodId,
+        setLocalActivePeriodId,
+    });
 
     const handlePointClick = contextSafe((periodId: string, event: React.MouseEvent) => {
         if (periodId === localActivePeriodId || isAnimating) return;
-
-        saveClickPosition(event);
-        const currentActiveIndex = localActivePeriodIndex;
         onActivate(periodId);
-
-
-        animateToNewPeriod(periodId, currentActiveIndex, true);
+        saveClickPosition(event);
+        animateToNewPeriod(periodId, localActivePeriodIndex, true);
     });
 
-    // Синхронизация localActivePeriodId с activePeriodId при первом рендере
-    useLayoutEffect(() => {
-        if (!isAnimating && localActivePeriodId !== activePeriodId) {
-            setLocalActivePeriodId(activePeriodId);
-        }
-    }, []);
-
-    // Обработка внешних изменений activePeriodId (например, из PeriodChanger)
-    useLayoutEffect(() => {
-        const prevPeriodId = prevActivePeriodIdRef.current;
-
-        // Если activePeriodId изменился извне (не из-за клика в PeriodCircle)
-        if (prevPeriodId !== activePeriodId && localActivePeriodId !== activePeriodId && !isAnimating) {
-            const currentLocalIndex = periods.findIndex((p) => p.id === localActivePeriodId);
-            if (currentLocalIndex !== -1) {
-                animateToNewPeriod(activePeriodId, currentLocalIndex, false);
-            }
-        }
-
-        // Обновляем ref для следующего сравнения
-        prevActivePeriodIdRef.current = activePeriodId;
-    }, [activePeriodId, localActivePeriodId, isAnimating, periods, animateToNewPeriod]);
-
-    // Cleanup анимации при размонтировании
     useLayoutEffect(() => {
         return () => {
             if (currentTimelineRef.current) {

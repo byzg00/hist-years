@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 import { colors } from '../../../styled';
+import { mainWrapperHeight, verticalCenter } from '../../periods/styled';
 import { pointNormalSize } from '../constants';
 
 export const PeriodCircleWrapper = styled.div`
     position: absolute;
-    width: 700px;
-    height: 700px;
+    width: ${mainWrapperHeight}px;
+    height: ${mainWrapperHeight}px;
     display: flex;
     left: 50%;
-    top: 50%;
+    top: ${verticalCenter}px;
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;

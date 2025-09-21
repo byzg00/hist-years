@@ -1,4 +1,6 @@
-export const containerSize = 700;
+import { mainWrapperHeight } from "../periods/styled";
+
+export const containerSize = mainWrapperHeight;
 export const circleSize = 530;
 export const radius = (circleSize - 2) / 2;
 export const center = containerSize / 2;

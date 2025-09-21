@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import { colors, mediaQuery } from '../../styled';
 
 export const horizontalPaddingMobile = 24;
+export const mainWrapperHeight = 134 + 393 + 88;
+export const verticalCenter = 480;
 const leftPadding = 80;
 
 export const PeriodsWrapper = styled.div`
     position: relative;
     max-width: 1440px;
-    max-height: 1080px;
     width: 100%;
-    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     padding: 170px 40px 104px ${leftPadding}px;
+    box-sizing: border-box;
     ${mediaQuery.lt480} {
         align-items: flex-start;
         justify-content: flex-start;
@@ -23,10 +23,11 @@ export const PeriodsWrapper = styled.div`
 
 export const MainWrapper = styled.div`
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: ${mainWrapperHeight}px;
     ${mediaQuery.lt480} {
-        display: flex;
-        flex-direction: column;
         gap: 56px;
     }
 `;
@@ -42,12 +43,12 @@ export const LineVertical = styled.div<{ $left: number }>`
     opacity: 0.2;
 `;
 
-export const LineHorizontal = styled.div<{ $top: number }>`
+export const LineHorizontal = styled.div<{ $top: string }>`
     position: absolute;
     width: 100%;
     height: 1px;
     background-color: ${colors.blackBlue};
-    top: calc(${({ $top }) => $top}% - 1px);
+    top: calc(${({ $top }) => $top} - 1px);
     left: 0;
     transform: translateY(-50%);
     opacity: 0.2;

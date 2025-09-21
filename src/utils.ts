@@ -1,5 +1,5 @@
-const BASE_ANIMATION_DURATION = 1.2;
-const MIN_ANIMATION_DURATION = 0.5;
+const BASE_ANIMATION_DURATION = 0.8;
+const MIN_ANIMATION_DURATION = 0.4;
 
 export const calculateAnimationDuration = (
     fromIndex: number,
