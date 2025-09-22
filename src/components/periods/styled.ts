@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { colors, mediaQuery } from '../../styled';
 
-export const horizontalPaddingMobile = 24;
+export const horizontalPaddingMobile = 20;
 export const mainWrapperHeight = 134 + 393 + 88;
 export const verticalCenter = 480;
 const leftPadding = 80;
@@ -17,7 +17,11 @@ export const PeriodsWrapper = styled.div`
     box-sizing: border-box;
     ${mediaQuery.lt480} {
         align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: space-between;
+        padding: unset;
+        padding-left: ${horizontalPaddingMobile}px;
+        padding-bottom: 13px;
+        min-height: 568px;
     }
 `;
 
@@ -26,9 +30,11 @@ export const MainWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: ${mainWrapperHeight}px;
+    min-height: ${mainWrapperHeight}px;
     ${mediaQuery.lt480} {
         gap: 56px;
+        justify-content: normal;
+        min-height: auto;
     }
 `;
 
@@ -59,7 +65,7 @@ export const TitleWrapper = styled.div`
     align-items: stretch;
     position: relative;
     ${mediaQuery.lt480} {
-        padding: 59px ${horizontalPaddingMobile}px 0;
+        padding: 59px 0 0;
         position: static;
     }
 `;

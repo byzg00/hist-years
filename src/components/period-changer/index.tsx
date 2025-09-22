@@ -4,10 +4,13 @@ import { Period } from '../../types';
 
 import {
     PeriodChangerWrapper,
+    PeriodChangerContainer,
     PeriodCounter,
     ButtonsContainer,
     ChangeButton,
     ArrowIcon,
+    IndicatorsContainer,
+    Indicator,
 } from './styled';
 
 interface PeriodChangerProps {
@@ -48,27 +51,50 @@ export const PeriodChanger: FC<PeriodChangerProps> = ({
         return num.toString().padStart(2, '0');
     };
 
+    const calculateOpacity = (index: number, activeIndex: number): number => {
+        return index === activeIndex ? 1 : 0.4; // Активная 100%, неактивные 40%
+    };
+
+    const handleIndicatorClick = useCallback((index: number) => {
+        if (!isAnimating && index !== activePeriodIndex) {
+            const targetPeriod = periods[index];
+            onActivate(targetPeriod.id);
+        }
+    }, [isAnimating, activePeriodIndex, periods, onActivate]);
+
     return (
         <PeriodChangerWrapper>
             <PeriodCounter>
                 {formatNumber(currentPeriodNumber)}/{formatNumber(totalPeriods)}
             </PeriodCounter>
-            <ButtonsContainer>
-                <ChangeButton
-                    $isDisabled={isFirstPeriod}
-                    onClick={handlePrevious}
-                    disabled={isFirstPeriod || isAnimating}
-                >
-                    <ArrowIcon $direction="left" />
-                </ChangeButton>
-                <ChangeButton
-                    $isDisabled={isLastPeriod}
-                    onClick={handleNext}
-                    disabled={isLastPeriod || isAnimating}
-                >
-                    <ArrowIcon $direction="right" />
-                </ChangeButton>
-            </ButtonsContainer>
+            <PeriodChangerContainer>
+                <ButtonsContainer>
+                    <ChangeButton
+                        $isDisabled={isFirstPeriod}
+                        onClick={handlePrevious}
+                        disabled={isFirstPeriod || isAnimating}
+                    >
+                        <ArrowIcon $direction="left" />
+                    </ChangeButton>
+                    <ChangeButton
+                        $isDisabled={isLastPeriod}
+                        onClick={handleNext}
+                        disabled={isLastPeriod || isAnimating}
+                    >
+                        <ArrowIcon $direction="right" />
+                    </ChangeButton>
+                </ButtonsContainer>
+                <IndicatorsContainer>
+                    {periods.map((_, index) => (
+                        <Indicator
+                            key={index}
+                            $opacity={calculateOpacity(index, activePeriodIndex)}
+                            $isActive={index === activePeriodIndex}
+                            onClick={() => handleIndicatorClick(index)}
+                        />
+                    ))}
+                </IndicatorsContainer>
+            </PeriodChangerContainer>
         </PeriodChangerWrapper>
     );
 };

@@ -9,6 +9,7 @@ import { PeriodChanger } from '../period-changer';
 
 import { LineHorizontal, LineVertical, MainWrapper, PeriodsWrapper, verticalCenter } from './styled';
 import { Title } from './Title';
+import { Slider } from '../slider';
 
 export const Periods = (props: {
     title: string;
@@ -20,6 +21,19 @@ export const Periods = (props: {
     const isMobile = useMatchMedia(mediaQuery.lt480);
     const [isAnimating, setIsAnimating] = useState(false);
 
+    const periodChanger = (
+        <PeriodChanger
+            periods={periods}
+            activePeriodId={activePeriodId}
+            onActivate={onActivate}
+            isAnimating={isAnimating}
+        />
+    );
+
+    const slider = (
+        <Slider />
+    );
+
     return (
         <PeriodsWrapper>
             <MainWrapper>
@@ -28,9 +42,9 @@ export const Periods = (props: {
                         <LineVertical $left={0} />
                         <LineVertical $left={50} />
                         <LineVertical $left={100} />
-                        <LineHorizontal $top={'0%'} />
+                        <LineHorizontal $top="0%" />
                         <LineHorizontal $top={`${verticalCenter}px`} />
-                        <LineHorizontal $top={'100%'} />
+                        <LineHorizontal $top="100%" />
                     </>
                 )}
                 <Title title={title} />
@@ -46,16 +60,11 @@ export const Periods = (props: {
                         <PeriodYears periods={periods} activePeriodId={activePeriodId} />
                     </PeriodCircle>
                 )}
-                <PeriodChanger
-                    periods={periods}
-                    activePeriodId={activePeriodId}
-                    onActivate={onActivate}
-                    isAnimating={isAnimating}
-                />
+                {isMobile ? null : periodChanger}
+                {isMobile ? slider : null}
             </MainWrapper>
-            <div style={{ height: '135px', marginTop: '56px', backgroundColor: 'greenyellow' }}>
-                Слайдер
-            </div>
+            {isMobile ? periodChanger : null}
+            {isMobile ? null : slider}
         </PeriodsWrapper>
     );
 };

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { colors, mediaQuery } from '../../styled';
-import { horizontalPaddingMobile } from '../periods/styled';
 
 export const YearsContainer = styled.div`
     display: flex;
@@ -13,7 +12,7 @@ export const YearsContainer = styled.div`
     white-space: pre;
     ${mediaQuery.lt480} {
         font-size: 56px;
-        padding: 0 ${horizontalPaddingMobile}px;
+        line-height: unset;
     }
 `;
 
