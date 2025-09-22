@@ -13,7 +13,7 @@ export const PeriodsWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 170px 40px 104px ${leftPadding}px;
+    padding: 170px ${leftPadding}px 104px ${leftPadding}px;
     box-sizing: border-box;
     ${mediaQuery.lt480} {
         align-items: flex-start;

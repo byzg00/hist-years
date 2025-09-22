@@ -1,7 +1,8 @@
 export const colors = {
     blackBlue: '#42567A',
-    iris100: '#3877EE',
+    iris100: '#5D5FEF',
     fuschia100: '#EF5DA8',
+    blue: '#3877EE',
 };
 
 export const fonts = {

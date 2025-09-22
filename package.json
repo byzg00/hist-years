@@ -23,6 +23,7 @@
         "@typescript-eslint/parser": "^8.33.1",
         "babel-loader": "^10.0.0",
         "babel-plugin-styled-components": "^2.1.4",
+        "css-loader": "^7.1.2",
         "eslint": "^8.57.1",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-import-resolver-typescript": "^3.7.0",
@@ -33,6 +34,7 @@
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^7.9.1",
+        "style-loader": "^4.0.0",
         "ts-loader": "^9.5.4",
         "typescript": "^5.9.2",
         "webpack": "^5.101.3",
@@ -44,6 +46,7 @@
         "gsap": "^3.13.0",
         "hex-to-rgba": "^2.0.1",
         "lodash": "^4.17.21",
-        "styled-components": "^6.1.19"
+        "styled-components": "^6.1.19",
+        "swiper": "^12.0.2"
     }
 }

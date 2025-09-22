@@ -31,7 +31,10 @@ export const Periods = (props: {
     );
 
     const slider = (
-        <Slider />
+        <Slider 
+            activePeriodId={activePeriodId}
+            periods={periods}
+        />
     );
 
     return (

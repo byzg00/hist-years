@@ -14,6 +14,7 @@ export const PeriodCircleWrapper = styled.div`
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
+    z-index: 2;
 `;
 
 export const MainCircle = styled.div`
