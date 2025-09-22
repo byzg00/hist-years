@@ -11,7 +11,7 @@ export const PeriodChangerWrapper = styled.div`
     gap: 20px;
     position: relative;
     z-index: 1;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         gap: 11px;
     }
 `;
@@ -24,7 +24,7 @@ export const PeriodChangerContainer = styled.div`
 export const IndicatorsContainer = styled.div`
     display: none;
     gap: 10px;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         display: flex;
     }
 `;
@@ -37,7 +37,7 @@ export const Indicator = styled.div<{ $opacity: number; $isActive: boolean }>`
     opacity: ${({ $opacity }) => $opacity};
     cursor: ${({ $isActive }) => $isActive ? 'default' : 'pointer'};
     transition: opacity 0.3s ease;
-    
+
     &:hover {
         opacity: ${({ $isActive }) => $isActive ? 1 : 0.6};
     }
@@ -54,7 +54,7 @@ export const ButtonsContainer = styled.div`
     display: flex;
     gap: 20px;
     align-items: center;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         gap: 8px;
     }
 `;
@@ -68,7 +68,7 @@ export const ArrowIcon = styled(Chevron)<{ $direction: 'left' | 'right' }>`
 const disabledStyle = ({ $isDisabled }: { $isDisabled?: boolean }) => $isDisabled ? `
     border: 1px solid ${hexToRgba(colors.blackBlue, 0.2)};
     color: ${hexToRgba(colors.blackBlue, 0.2)};
-` : ''
+` : '';
 
 export const ChangeButton = styled.button<{ $isDisabled?: boolean }>`
     width: 50px;
@@ -96,7 +96,7 @@ export const ChangeButton = styled.button<{ $isDisabled?: boolean }>`
         ${disabledStyle}
     }
 
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         width: 25px;
         height: 25px;
     }

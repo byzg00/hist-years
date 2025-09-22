@@ -7,7 +7,7 @@ import 'swiper/css';
 import { Period } from '../../types';
 import { calculateAnimationDuration } from '../../utils';
 
-import { SliderWrapper, SliderContainer, SliderArrow, SlideContent, SlideTitle, SlideText, CustomArrow } from './styled';
+import { SliderWrapper, SliderContainer, SliderArrow, SlideContent, SlideTitle, SlideText, CustomArrow, MobileHeader, MobileTitle, MobileDivider } from './styled';
 
 interface SliderProps {
     activePeriodId: string | null;
@@ -21,20 +21,20 @@ export const Slider: FC<SliderProps> = ({ activePeriodId, periods }) => {
     const [mounted, setMounted] = useState(false);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
-    
-    const currentPeriod = periods.find(p => p.id === displayedPeriodId) || null;
+
+    const currentPeriod = periods.find((p) => p.id === displayedPeriodId) || null;
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    useEffect(() => {
+    useEffect((): void | (() => void) => {
         if (activePeriodId !== displayedPeriodId) {
-            const currentPeriodIndex = periods.findIndex(p => p.id === activePeriodId);
+            const currentPeriodIndex = periods.findIndex((p) => p.id === activePeriodId);
             const animationDuration = calculateAnimationDuration(0, currentPeriodIndex, periods.length);
-            
+
             setIsVisible(false);
-            
+
             const timeout = setTimeout(() => {
                 setDisplayedPeriodId(activePeriodId);
                 if (swiperRef.current) {
@@ -45,6 +45,7 @@ export const Slider: FC<SliderProps> = ({ activePeriodId, periods }) => {
 
             return () => clearTimeout(timeout);
         }
+        return undefined;
     }, [activePeriodId, displayedPeriodId, periods]);
 
     if (!mounted || !currentPeriod) {
@@ -67,6 +68,11 @@ export const Slider: FC<SliderProps> = ({ activePeriodId, periods }) => {
 
     return (
         <SliderWrapper $isVisible={isVisible}>
+            <MobileHeader>
+                <MobileTitle>{currentPeriod.title}</MobileTitle>
+                <MobileDivider />
+            </MobileHeader>
+
             <SliderContainer>
                 <Swiper
                     spaceBetween={80}
@@ -84,8 +90,8 @@ export const Slider: FC<SliderProps> = ({ activePeriodId, periods }) => {
                         320: {
                             spaceBetween: 25,
                         },
-                        480: {
-                            spaceBetween: 25,
+                        1000: {
+                            spaceBetween: 80,
                         },
                     }}
                 >
@@ -99,16 +105,16 @@ export const Slider: FC<SliderProps> = ({ activePeriodId, periods }) => {
                     ))}
                 </Swiper>
             </SliderContainer>
-            
-            <SliderArrow 
-                $direction="prev" 
+
+            <SliderArrow
+                $direction="prev"
                 $disabled={isBeginning}
                 onClick={handlePrevClick}
             >
                 <CustomArrow $direction="prev" />
             </SliderArrow>
-            <SliderArrow 
-                $direction="next" 
+            <SliderArrow
+                $direction="next"
                 $disabled={isEnd}
                 onClick={handleNextClick}
             >

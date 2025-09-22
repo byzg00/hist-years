@@ -15,11 +15,10 @@ export const PeriodsWrapper = styled.div`
     flex-direction: column;
     padding: 170px ${leftPadding}px 104px ${leftPadding}px;
     box-sizing: border-box;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         align-items: flex-start;
         justify-content: space-between;
-        padding: unset;
-        padding-left: ${horizontalPaddingMobile}px;
+        padding: 0 ${horizontalPaddingMobile}px;
         padding-bottom: 13px;
         min-height: 568px;
     }
@@ -31,7 +30,7 @@ export const MainWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     min-height: ${mainWrapperHeight}px;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         gap: 56px;
         justify-content: normal;
         min-height: auto;
@@ -64,7 +63,7 @@ export const TitleWrapper = styled.div`
     display: flex;
     align-items: stretch;
     position: relative;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         padding: 59px 0 0;
         position: static;
     }
@@ -79,7 +78,7 @@ export const TitleLine = styled.div`
     background: linear-gradient(180deg, ${colors.iris100} 0%, ${colors.fuschia100} 100%);
     flex-shrink: 0;
     transform: scaleY(${120 / 135});
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         display: none;
     }
 `;
@@ -90,7 +89,7 @@ export const TitleText = styled.div`
     font-weight: 700;
     color: ${colors.blackBlue};
     max-width: 353px;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         font-size: 20px;
         max-width: 123px;
     }

@@ -52,7 +52,7 @@ export const PeriodChanger: FC<PeriodChangerProps> = ({
     };
 
     const calculateOpacity = (index: number, activeIndex: number): number => {
-        return index === activeIndex ? 1 : 0.4; // Активная 100%, неактивные 40%
+        return index === activeIndex ? 1 : 0.4;
     };
 
     const handleIndicatorClick = useCallback((index: number) => {
@@ -85,9 +85,9 @@ export const PeriodChanger: FC<PeriodChangerProps> = ({
                     </ChangeButton>
                 </ButtonsContainer>
                 <IndicatorsContainer>
-                    {periods.map((_, index) => (
+                    {periods.map(({ id }, index) => (
                         <Indicator
-                            key={index}
+                            key={id}
                             $opacity={calculateOpacity(index, activePeriodIndex)}
                             $isActive={index === activePeriodIndex}
                             onClick={() => handleIndicatorClick(index)}

@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project!
-
-This project has been created using **create-webpack-app**, you can now run
-
-```bash
-npm run build
+Для запуска проекта используйте:
+```shell
+npm i
+npm run serve
 ```
 
-or
-
-```bash
-yarn build
-```
-
-to bundle your application
+При разработке использовалось: node-20.19, npm-11.4.1

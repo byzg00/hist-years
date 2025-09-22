@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import hexToRgba from 'hex-to-rgba';
 
 import { colors, fonts, mediaQuery } from '../../styled';
 import { Chevron } from '../period-changer/chevron';
-import hexToRgba from 'hex-to-rgba';
 
 export const SliderWrapper = styled.div<{ $isVisible: boolean }>`
     cursor: pointer;
@@ -12,9 +12,35 @@ export const SliderWrapper = styled.div<{ $isVisible: boolean }>`
     position: relative;
     width: 100%;
     user-select: none;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         margin-top: 0;
     }
+`;
+
+export const MobileHeader = styled.div`
+    display: none;
+    ${mediaQuery.lt1000} {
+        display: block;
+        margin-bottom: 20px;
+        position: relative;
+    }
+`;
+
+export const MobileTitle = styled.h2`
+    font-family: ${fonts.decorative};
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: ${colors.blackBlue};
+    margin: 0 0 25px 0;
+`;
+
+export const MobileDivider = styled.div`
+    position: relative;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: ${hexToRgba(colors.blackBlue, 0.1)};
 `;
 
 export const SliderContainer = styled.div`
@@ -22,16 +48,16 @@ export const SliderContainer = styled.div`
     height: 100%;
     overflow: hidden;
     position: relative;
-    
+
     .swiper {
         height: 100%;
         overflow: visible;
     }
-    
+
     .swiper-slide {
         max-width: 320px;
         flex-shrink: 0;
-        ${mediaQuery.lt480} {
+        ${mediaQuery.lt1000} {
             max-width: 160px;
         }
     }
@@ -51,11 +77,11 @@ export const SliderArrow = styled.div<{ $direction: 'prev' | 'next'; $disabled?:
     align-items: center;
     justify-content: center;
     z-index: 10;
-    
+
     ${({ $direction }) => $direction === 'prev' ? 'left: -60px;' : 'right: -60px;'}
-    
-    ${mediaQuery.lt480} {
-        ${({ $direction }) => $direction === 'prev' ? 'left: -50px;' : 'right: -50px;'}
+
+    ${mediaQuery.lt1000} {
+        display: none;
     }
 `;
 
@@ -73,6 +99,9 @@ export const SlideTitle = styled.h3`
     color: ${colors.blue};
     margin: 0 0 15px 0;
     font-weight: 400;
+    ${mediaQuery.lt1000} {
+        font-size: 16px;
+    }
 `;
 
 export const SlideText = styled.p`
@@ -81,7 +110,7 @@ export const SlideText = styled.p`
     color: ${colors.blackBlue};
     margin: 0;
     line-height: 30px;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         font-size: 14px;
         line-height: 1.45;
     }

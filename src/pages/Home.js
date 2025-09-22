@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-
+import { jsx as _jsx } from "react/jsx-runtime";
+import { useState } from 'react';
 import { Periods } from '../components/periods';
-import { Period } from '../types';
-
 import { PageWrapper } from './styled';
-
-const periods: Period[] = [
+var periods = [
     {
         id: 'period-1',
         num: 1,
@@ -91,24 +88,11 @@ const periods: Period[] = [
         },
     },
 ];
-
-const App: React.FC = () => {
-    const [activePeriodId, setActivePeriodId] = useState('period-2');
-
-    const handleActivate = (periodId: string) => {
+var App = function () {
+    var _a = useState('period-2'), activePeriodId = _a[0], setActivePeriodId = _a[1];
+    var handleActivate = function (periodId) {
         setActivePeriodId(periodId);
     };
-
-    return (
-        <PageWrapper>
-            <Periods
-                title="Исторические даты"
-                periods={periods}
-                activePeriodId={activePeriodId}
-                onActivate={handleActivate}
-            />
-        </PageWrapper>
-    );
+    return (_jsx(PageWrapper, { children: _jsx(Periods, { title: "\u0418\u0441\u0442\u043E\u0440\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0434\u0430\u0442\u044B", periods: periods, activePeriodId: activePeriodId, onActivate: handleActivate }) }));
 };
-
 export default App;

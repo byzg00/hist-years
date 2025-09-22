@@ -6,10 +6,10 @@ import { Period } from '../../types';
 import { PeriodCircle } from '../period-circle';
 import { PeriodYears } from '../period-yeas';
 import { PeriodChanger } from '../period-changer';
+import { Slider } from '../slider';
 
 import { LineHorizontal, LineVertical, MainWrapper, PeriodsWrapper, verticalCenter } from './styled';
 import { Title } from './Title';
-import { Slider } from '../slider';
 
 export const Periods = (props: {
     title: string;
@@ -18,7 +18,7 @@ export const Periods = (props: {
     onActivate: (activePeriodId: string) => void,
 }) => {
     const { title, periods, activePeriodId, onActivate } = props;
-    const isMobile = useMatchMedia(mediaQuery.lt480);
+    const isMobile = useMatchMedia(mediaQuery.lt1000);
     const [isAnimating, setIsAnimating] = useState(false);
 
     const periodChanger = (
@@ -31,7 +31,7 @@ export const Periods = (props: {
     );
 
     const slider = (
-        <Slider 
+        <Slider
             activePeriodId={activePeriodId}
             periods={periods}
         />

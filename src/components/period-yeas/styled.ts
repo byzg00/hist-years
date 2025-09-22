@@ -10,7 +10,7 @@ export const YearsContainer = styled.div`
     line-height: 160px;
     letter-spacing: -.02em;
     white-space: pre;
-    ${mediaQuery.lt480} {
+    ${mediaQuery.lt1000} {
         font-size: 56px;
         line-height: unset;
     }

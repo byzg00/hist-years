@@ -1,0 +1,24 @@
+var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+import styled from 'styled-components';
+import { colors, mediaQuery } from '../../styled';
+export var horizontalPaddingMobile = 20;
+export var mainWrapperHeight = 134 + 393 + 88;
+export var verticalCenter = 480;
+var leftPadding = 80;
+export var PeriodsWrapper = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    position: relative;\n    max-width: 1440px;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    padding: 170px ", "px 104px ", "px;\n    box-sizing: border-box;\n    ", " {\n        align-items: flex-start;\n        justify-content: space-between;\n        padding: 0 ", "px;\n        padding-bottom: 13px;\n        min-height: 568px;\n    }\n"], ["\n    position: relative;\n    max-width: 1440px;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    padding: 170px ", "px 104px ", "px;\n    box-sizing: border-box;\n    ", " {\n        align-items: flex-start;\n        justify-content: space-between;\n        padding: 0 ", "px;\n        padding-bottom: 13px;\n        min-height: 568px;\n    }\n"])), leftPadding, leftPadding, mediaQuery.lt1000, horizontalPaddingMobile);
+export var MainWrapper = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    min-height: ", "px;\n    ", " {\n        gap: 56px;\n        justify-content: normal;\n        min-height: auto;\n    }\n"], ["\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    min-height: ", "px;\n    ", " {\n        gap: 56px;\n        justify-content: normal;\n        min-height: auto;\n    }\n"])), mainWrapperHeight, mediaQuery.lt1000);
+export var LineVertical = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    position: absolute;\n    width: 1px;\n    height: 100%;\n    background-color: ", ";\n    left: calc(", "% - 1px);\n    top: 0;\n    transform: translateX(-50%);\n    opacity: 0.2;\n"], ["\n    position: absolute;\n    width: 1px;\n    height: 100%;\n    background-color: ", ";\n    left: calc(", "% - 1px);\n    top: 0;\n    transform: translateX(-50%);\n    opacity: 0.2;\n"])), colors.blackBlue, function (_a) {
+    var $left = _a.$left;
+    return $left;
+});
+export var LineHorizontal = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    position: absolute;\n    width: 100%;\n    height: 1px;\n    background-color: ", ";\n    top: calc(", " - 1px);\n    left: 0;\n    transform: translateY(-50%);\n    opacity: 0.2;\n"], ["\n    position: absolute;\n    width: 100%;\n    height: 1px;\n    background-color: ", ";\n    top: calc(", " - 1px);\n    left: 0;\n    transform: translateY(-50%);\n    opacity: 0.2;\n"])), colors.blackBlue, function (_a) {
+    var $top = _a.$top;
+    return $top;
+});
+export var TitleWrapper = styled.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    display: flex;\n    align-items: stretch;\n    position: relative;\n    ", " {\n        padding: 59px 0 0;\n        position: static;\n    }\n"], ["\n    display: flex;\n    align-items: stretch;\n    position: relative;\n    ", " {\n        padding: 59px 0 0;\n        position: static;\n    }\n"])), mediaQuery.lt1000);
+export var TitleLine = styled.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    position: absolute;\n    top: 0;\n    left: ", "px;\n    width: 5px;\n    height: 100%;\n    background: linear-gradient(180deg, ", " 0%, ", " 100%);\n    flex-shrink: 0;\n    transform: scaleY(", ");\n    ", " {\n        display: none;\n    }\n"], ["\n    position: absolute;\n    top: 0;\n    left: ", "px;\n    width: 5px;\n    height: 100%;\n    background: linear-gradient(180deg, ", " 0%, ", " 100%);\n    flex-shrink: 0;\n    transform: scaleY(", ");\n    ", " {\n        display: none;\n    }\n"])), -leftPadding - 5 / 2, colors.iris100, colors.fuschia100, 120 / 135, mediaQuery.lt1000);
+export var TitleText = styled.div(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    line-height: 120%;\n    font-size: 56px;\n    font-weight: 700;\n    color: ", ";\n    max-width: 353px;\n    ", " {\n        font-size: 20px;\n        max-width: 123px;\n    }\n"], ["\n    line-height: 120%;\n    font-size: 56px;\n    font-weight: 700;\n    color: ", ";\n    max-width: 353px;\n    ", " {\n        font-size: 20px;\n        max-width: 123px;\n    }\n"])), colors.blackBlue, mediaQuery.lt1000);
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;

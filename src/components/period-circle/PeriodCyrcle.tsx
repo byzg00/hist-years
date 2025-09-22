@@ -108,10 +108,7 @@ export const PeriodCircle: FC<PeriodCircleProps> = ({
                 setIsAnimating(false);
                 currentTimelineRef.current = null;
 
-                // Обновляем локальный активный период в конце анимации
                 setLocalActivePeriodId(newPeriodId);
-
-                // Уведомляем о завершении анимации
                 onAnimationStateChange?.(false);
 
                 if (hasClickEvent) {

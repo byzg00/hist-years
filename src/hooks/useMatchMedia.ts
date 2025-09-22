@@ -5,10 +5,7 @@ import { mediaQuery } from '../styled';
 type MediaQuery = typeof mediaQuery;
 export type MediaQueryBreakpoints = MediaQuery[keyof MediaQuery];
 export type UseMatchMediaBreakpoint = MediaQueryBreakpoints | `@media (${'min' | 'max'}-width: ${number}px)`;
-/*
- * @example
- * const isTablet = useMatchMedia(mediaQuery.lt768);
- */
+
 export function useMatchMedia(breakpoint: UseMatchMediaBreakpoint): boolean {
     const query = breakpoint.replace('@media ', '');
     const [matches, setMatches] = useState(matchMedia(query).matches);
