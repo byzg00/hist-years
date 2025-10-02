@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clone from 'lodash/clone';
 
 import { Periods } from '../components/periods';
 import { Period } from '../types';
@@ -92,11 +93,19 @@ const periods: Period[] = [
     },
 ];
 
+const periods2: Period[] = clone(periods);
+
 const App: React.FC = () => {
     const [activePeriodId, setActivePeriodId] = useState('period-2');
 
     const handleActivate = (periodId: string) => {
         setActivePeriodId(periodId);
+    };
+
+    const [activePeriodId2, setActivePeriodId2] = useState('period-2');
+
+    const handleActivate2 = (periodId: string) => {
+        setActivePeriodId2(periodId);
     };
 
     return (
@@ -106,6 +115,13 @@ const App: React.FC = () => {
                 periods={periods}
                 activePeriodId={activePeriodId}
                 onActivate={handleActivate}
+            />
+            <br />
+            <Periods
+                title="Исторические даты 2"
+                periods={periods2}
+                activePeriodId={activePeriodId2}
+                onActivate={handleActivate2}
             />
         </PageWrapper>
     );

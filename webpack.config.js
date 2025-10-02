@@ -14,9 +14,9 @@ const babelReact = {
         options: {
             cacheDirectory: true,
             presets: [
-                '@babel/preset-env', 
-                ['@babel/preset-react', { runtime: 'automatic' }], 
-                '@babel/preset-typescript'
+                '@babel/preset-env',
+                ['@babel/preset-react', { runtime: 'automatic' }],
+                '@babel/preset-typescript',
             ],
             plugins: ['babel-plugin-styled-components'],
         },
